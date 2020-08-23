@@ -40,11 +40,12 @@ for file_name in list_stat :
             occipital += float(part[4])
         
         if line_cnt == 94 :
+            cortical = round((temporal + frontal + parietal + occipital)/33.0, 3)
             temporal = round(temporal/9.0, 3)
             frontal = round(frontal/13.0, 3)
             parietal = round(parietal/7.0, 3)
             occipital = round(occipital/4.0, 3)
-            cortical = round(float(part[4])/1.0,3)
+            
 
             db_row.append([str(int(file_name[3:6])),file_name[-14:-12], str(temporal), str(frontal),
              str(parietal), str(occipital), str(cortical)])
@@ -62,7 +63,7 @@ for file_name in list_stat :
 import pymysql
  
 # MySQL Connection 연결
-conn = pymysql.connect(host='221.142.100.2', port=3456, user='guest', password= '540528',
+conn = pymysql.connect(host='192.168.1.12', port=3456, user='guest', password= '540528',
                        db='patientdb')
  
 # Connection 으로부터 Cursor 생성
